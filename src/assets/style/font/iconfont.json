@@ -1,0 +1,93 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "588781",
+      "name": "充值",
+      "font_class": "chongzhi01",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "1119131",
+      "name": "提现",
+      "font_class": "tixian",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "1214984",
+      "name": "余额宝",
+      "font_class": "yuebao",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "3956141",
+      "name": "在线客服",
+      "font_class": "kujialeqiyezhan_zaixiankefu-",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "4421943",
+      "name": "银行卡",
+      "font_class": "yinhangqia",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "7148748",
+      "name": "充值记录",
+      "font_class": "chongzhijilu",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "9397091",
+      "name": "钱币",
+      "font_class": "icon-test",
+      "unicode": "e6de",
+      "unicode_decimal": 59102
+    },
+    {
+      "icon_id": "10063199",
+      "name": "设置",
+      "font_class": "NMStubiao-",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "10392624",
+      "name": "资金明细",
+      "font_class": "zijinmingxi",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "11192529",
+      "name": "账户提现列表_ico@2x",
+      "font_class": "zhanghutixianliebiao_icox",
+      "unicode": "e6cc",
+      "unicode_decimal": 59084
+    },
+    {
+      "icon_id": "11432792",
+      "name": "充值",
+      "font_class": "chongzhi",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "11992124",
+      "name": "查看下级",
+      "font_class": "chakanxiaji",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    }
+  ]
+}
