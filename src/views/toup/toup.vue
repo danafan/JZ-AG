@@ -4,27 +4,41 @@
         <van-cell class="label_text" title="收款姓名：" :value="rechargeData.toCardName"></van-cell>
         <van-cell class="label_text" title="收款银行：" :value="rechargeData.toBankName"></van-cell>
         <van-cell class="label_text" title="收款卡号：" :value="rechargeData.toCardNo"></van-cell>
-        <!-- <van-field
-        class="label_text"
-        v-model="oldpassword"
-        type="password"
-        label="旧密码"
-        placeholder="请输入旧密码"
+        <van-field
+        class="label_text top"
+        v-model="rechargeData.cardName"
+        type="text"
+        label="充值姓名"
+        placeholder="请输入充值姓名"
         />
         <van-field
         class="label_text"
-        v-model="password"
-        type="password"
-        label="新密码"
-        placeholder="请输入新密码"
+        v-model="rechargeData.bankName"
+        type="text"
+        label="充值银行"
+        placeholder="请输入充值银行"
         />
         <van-field
-        class="label_text bottom"
-        v-model="passwords"
-        type="password"
-        label="确认密码"
-        placeholder="请输入确认密码"
-        /> -->
+        class="label_text"
+        v-model="rechargeData.cardNo"
+        type="number"
+        label="银行卡号"
+        placeholder="请输入银行卡号"
+        />
+        <van-field
+        class="label_text"
+        v-model="rechargeData.money"
+        type="number"
+        label="充值金额"
+        placeholder="请输入充值金额"
+        />
+         <van-field
+        class="label_text bottom top"
+        v-model="rechargeData.remark"
+        type="text"
+        label="备注"
+        placeholder="请输入备注信息"
+        />
         <Button text="确定" :active_submit="true" @callback="submitRecharge"/>
         <!-- <van-nav-bar :title="title" left-arrow @click-left="back"/> -->
 		<!-- <div class="cont">
@@ -82,8 +96,10 @@
 </template>
 <style lang="less" scoped>
 .label_text{
+    height: 1.04rem;
     font-size: .32rem;
     color: #777B8F;
+    align-items: center;
 }
 .top{
     margin-top: .2rem;
@@ -151,6 +167,10 @@
                 })
             },
             submitRecharge() {
+                if (!this.rechargeData.cardName) {
+                this.$toast("充值姓名不能为空")
+                return
+            }
                 if (!this.rechargeData.bankName) {
                  this.$toast("充值银行不能为空")
                  return
@@ -159,10 +179,7 @@
                 this.$toast("充值卡号不能为空")
                 return
             }
-            if (!this.rechargeData.cardName) {
-                this.$toast("充值姓名不能为空")
-                return
-            }
+            
             if (!this.rechargeData.money) {
                 this.$toast("充值金额不能为空")
                 return

@@ -100,13 +100,62 @@ const router = new Router({
         component: () =>
         import ("@/views/toup/toup")
     },
-
-
-
-
-
-
-    
+    {
+        path: "/withDraw",
+        meta: {
+            title: "提现"
+        },
+        component: () =>
+        import ("@/views/toup/withDraw")
+    },
+    {
+        path: "/yuebao",
+        meta: {
+            title: '余额宝',
+        },
+        component: () =>
+        import ("@/views/yuBao/index")
+    },
+    {
+        path: "/rollIn",
+        meta: {
+            title: '余额宝-转入',
+        },
+        component: () =>
+        import ("@/views/yuBao/rollIn")
+    },
+    {
+        path: "/rollOut",
+        meta: {
+            title: '余额宝-转出',
+        },
+        component: () =>
+        import ("@/views/yuBao/rollOut")
+    },
+    {
+        path: "/buy",
+        meta: {
+            title: '余额宝-购买',
+        },
+        component: () =>
+        import ("@/views/yuBao/buy")
+    },
+    {
+        path: "/tradingRecord",
+        meta: {
+            title: '余额宝-交易记录',
+        },
+        component: () =>
+        import ("@/views/yuBao/dealList")
+    },
+    {
+        path: '/receiveBank',
+        meta: {
+            title: '收款银行卡'
+        },
+        component: () =>
+        import ("@/views/my/children/receiveBank")
+    },
     {
         path: '/newbrank',
         meta: {
@@ -115,62 +164,51 @@ const router = new Router({
         component: () =>
         import ("@/views/toup/newBrank")
     },
-    // {
-    //     path: "center",
-    //     meta: {
-    //         title: "個人中心"
-    //     },
-    //     component: () =>
-    //     import ("@/views/my/children/center")
-    // },
-    {
-        path: 'receiveBank',
-        meta: {
-            title: '收款銀行卡'
-        },
-        component: () =>
-        import ("@/views/my/children/receiveBank")
-    },
     {
         path: '/rechargeList',
         meta: {
-            title: '充值記錄'
+            title: '充值记录'
         },
         component: () =>
         import ("@/views/my/children/rechargeList")
     },
     {
-        path: 'withdrawList',
+        path: '/moneyDetail',
         meta: {
-            title: '提現列表'
-        },
-        component: () =>
-        import ("@/views/my/children/withdrawList")
-    },
-    {
-        path: 'moneyDetail',
-        meta: {
-            title: '資金明細'
+            title: '资金明细'
         },
         component: () =>
         import ("@/views/my/children/moneyDetail")
     },
     {
-        path: 'subList',
+        path: '/subList',
         meta: {
-            title: '我的下級'
+            title: '我的下级'
         },
         component: () =>
         import ("@/views/my/children/subList")
     },
     {
-        path: "/yb/index",
+        path: '/withdrawList',
         meta: {
-            title: '余额宝',
+            title: '提现列表'
         },
         component: () =>
-        import ("@/views/yuBao/index")
+        import ("@/views/my/children/withdrawList")
     },
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
     {
       path: "/yb/process",
       meta: {
@@ -179,39 +217,8 @@ const router = new Router({
       component: () =>
       import ("@/views/yuBao/process")
   },
+
   {
-    path: "/yb/in",
-    meta: {
-        title: '余额宝-转入',
-    },
-    component: () =>
-    import ("@/views/yuBao/rollIn")
-},
-{
-    path: "/yb/out",
-    meta: {
-        title: '余额宝-转出',
-    },
-    component: () =>
-    import ("@/views/yuBao/rollOut")
-},
-{
-    path: "/yb/list",
-    meta: {
-        title: '余额宝-交易记录',
-    },
-    component: () =>
-    import ("@/views/yuBao/dealList")
-},
-{
-    path: "/yb/buy",
-    meta: {
-        title: '余额宝-购买',
-    },
-    component: () =>
-    import ("@/views/yuBao/buy")
-},
-{
     path: "*",
     component: () =>
     import ("@/components/NotFound")

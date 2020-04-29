@@ -13,12 +13,37 @@
                 </div>
             </div>
         </div>
-    </div>
+        
+        <!-- <Back title="充值记录"/>
+        <div class="card_list">
+           <Card v-for="item in list">
+            
+        </Card>
+    </div> -->
+</div>
 </template>
-
+<!-- <style lang="less" scoped>
+.page{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+.card_list{
+    padding: .3rem;
+    flex: 1;
+    overflow-y: scroll;
+}
+</style> -->
 <script>
     import {listMemberRecharge} from '../../../api'
     import {Tag, Dialog} from 'vant';
+
+    import Back from '../../../components/Back.vue'
+    import Card from '../../../components/Card.vue'
 
     export default {
         data() {
@@ -29,6 +54,10 @@
         mounted() {
             this.requestData()
         },
+        components:{
+            Back,
+            Card,
+        },
         methods: {
             back() {
                 this.$router.push('/my/center')
@@ -36,13 +65,13 @@
             fillColor(type) {
                 switch (type) {
                     case 1:
-                        return 'green';
+                    return 'green';
                     case 2:
-                        return 'blue';
+                    return 'blue';
                     case 3:
-                        return 'red';
+                    return 'red';
                     case 4:
-                        return 'black';
+                    return 'black';
                 }
                 return 'black'
             },
@@ -55,13 +84,13 @@
                 listMemberRecharge(queryParams).then(data => {
                     if (data && data.code == 200) {
                         this.list = data.rows
-						console.log(data.rows);
+                        console.log(data.rows);
                     }
                 }).catch((e) => {
                     Dialog.alert({
-                            title: '警告',
-                            message: e.message
-                        }
+                        title: '警告',
+                        message: e.message
+                    }
                     )
                 })
             },

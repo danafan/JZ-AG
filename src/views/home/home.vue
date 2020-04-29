@@ -20,6 +20,7 @@
 				<div class="tabTxt" :class="{'tabTxtSel':activeIndex == '/my'}">我的</div>
 			</div>
 		</div>		
+		<DialogModel @callback="look" @close="showDialog = false" :content="content" v-if="showDialog"/>
 	</div>
 </template>
 <style lang="less" scoped>
@@ -69,10 +70,15 @@
 </style>
 <script>
 	import {isFade} from '../../api'
+	import DialogModel from '../../components/DialogModel.vue'
+
 	export default{
 		data(){
 			return{
 				activeIndex:"/index",
+				showDialog:true,
+				content:"您有一个订单已完成，现在去看看？",
+				timer:null
 			}
 		},
 		created(){
@@ -84,10 +90,13 @@
 				clearInterval(this.timer);
 			}
 		},
+		components:{
+			DialogModel
+		},
 		watch:{
 			$route:function(n){
 				this.activeIndex = n.path;
-				this.$router.push(n.path);
+				// this.$router.push(n.path);
 			}
 		},
 		methods:{
@@ -106,6 +115,11 @@
                         }
                     }
                 })
+			},
+			look(){
+				this.showDialog = false;
+				this.$router.push('/trading?type=1');
+				// this.$router.push({path: '/trading',query:{ 'type':'1'}});
 			},
 			//切换导航
 			checkTab(tab){

@@ -1,5 +1,8 @@
 <template>
     <div class="page">
+
+        
+        <!-- parseTime(item.createTime) -->
         <van-nav-bar title="我的下级" left-arrow @click-left="back" @click-right="setprice">
             <!-- <template slot="right">
                 <i class="iconfont icon-jia f20" style="color: #c03131"></i>

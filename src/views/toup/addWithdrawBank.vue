@@ -22,14 +22,16 @@
         label="银行卡号"
         placeholder="请输入银行卡号"
         />
-         <Button text="确定" :active_submit="true" @callback="submit"/>
+        <Button text="确定" :active_submit="true" @callback="submit"/>
         <!-- <div class="logout f16 flex fcc bg-fff fixed w100pc" @click="submit">
             <p class="blue">确认</p>
         </div>  -->
     </div>
 </template>
 <style lang="less" scoped>
-    .label_text{
+.label_text{
+    height: 1.04rem;
+    align-items: center;
     font-size: .32rem;
     color: #777B8F;
 }

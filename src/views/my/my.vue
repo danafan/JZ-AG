@@ -52,44 +52,44 @@
                     <img src="../../assets/withdrawal.png">
                     <div class="fun_text">提现</div>
                 </div>
-                <div class="fun_item">
+                <div class="fun_item" @click="$router.push('/yuebao')">
                     <img src="../../assets/balance.png">
                     <div class="fun_text">余额宝</div>
                 </div>
             </div>
         </div>
         <div class="my_cate">
-            <div class="my_item">
+            <div class="my_item" @click="$router.push('/receiveBank')">
                 <img src="../../assets/collection.png">
                 <div class="cate_text">收款银行卡</div>
             </div>
-            <div class="my_item">
+            <div class="my_item" @click="$router.push('/withdrawBank')">
                 <img src="../../assets/withdrawal_bank.png">
                 <div class="cate_text">提现银行卡</div>
             </div>
-            <div class="my_item">
+            <div class="my_item" @click="$router.push('/rechargeList')">
                 <img src="../../assets/record.png">
                 <div class="cate_text">充值记录</div>
             </div>
-            <div class="my_item">
+            <div class="my_item" @click="$router.push('/moneyDetail')">
                 <img src="../../assets/detail.png">
                 <div class="cate_text">资金明细</div>
             </div>
-            <div class="my_item">
-                <img src="../../assets/level.png">
-                <div class="cate_text">我的下级</div>
-            </div>
-            <div class="my_item">
+            <div class="my_item" @click="$router.push('/withdrawList')">
                 <img src="../../assets/withdrawal_list.png">
                 <div class="cate_text">提现列表</div>
+            </div>
+            <div class="my_item" v-if="userType == 2" @click="$router.push('/subList')">
+                <img src="../../assets/level.png">
+                <div class="cate_text">我的下级</div>
             </div>
         </div>
         <van-action-sheet v-model="show_sheet" :title="sheet_type == 0 ? '充值' : '提现'" :round="false" @cancel="show_sheet = false">
             <div class="sheet_item" v-show="sheet_type == 0" @click="$router.push('/toup?type=' + 1)">保证金充值</div>
             <div class="sheet_item" v-show="sheet_type == 0" @click="$router.push('/toup?type=' + 2)">余额充值</div>
-            <div class="sheet_item" v-show="sheet_type == 1">保证金提现</div>
-            <div class="sheet_item" v-show="sheet_type == 1">余额提现</div>
-      </van-action-sheet>
+            <div class="sheet_item" v-show="sheet_type == 1" @click="$router.push('/withDraw?type=' + 3)">保证金提现</div>
+            <div class="sheet_item" v-show="sheet_type == 1" @click="$router.push('/withDraw?type=' + 4)">余额提现</div>
+        </van-action-sheet>
 
         <!-- <header>
             <div class="beijin">

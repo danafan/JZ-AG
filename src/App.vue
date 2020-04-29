@@ -12,7 +12,7 @@
     created(){
       const token = getToken();
       if (token) {
-        this.$router.push('/my');
+        this.$router.push('/index');
       } else {
         this.$router.replace('/login');
       }

@@ -45,6 +45,8 @@
 </template>
 <style lang="less" scoped>
 .label_text{
+    height: 1.04rem;
+    align-items: center;
     font-size: .32rem;
     color: #777B8F;
 }

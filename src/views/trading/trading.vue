@@ -75,6 +75,12 @@
 				active_tab:0,			//默认抢单大厅
 			}
 		},
+		created(){
+			let tab = this.$route.query;
+			if(tab.type == '1'){
+				this.active_tab = 1;
+			}
+		},
   		methods:{
 			//点击切换顶部导航
 			changeTab(index){
