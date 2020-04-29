@@ -23,6 +23,15 @@
 .van-pull-refresh{
   overflow: visible!important;
 }
+.van-toast{
+  font-size: .32rem!important;
+}
+.van-swipe__indicators{
+  bottom: 1rem!important;
+}
+.van-list__finished-text{
+  font-size: .26rem!important;
+}
 </style>
 
 

@@ -127,7 +127,7 @@
     inOrOut(param).then(res=>{
       if ( res.code == 200 ) {
         this.$toast('转出成功')
-        this.$router.push('/my');
+        this.$router.go(-1);
       } else {
         this.$toast(res.msg)
       }

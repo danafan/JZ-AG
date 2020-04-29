@@ -1,12 +1,66 @@
 <template>
 	<div class="wrap">
-	  <van-nav-bar title="攒钱流程" left-arrow @click-left="back"></van-nav-bar>
+		<Back title="赚钱流程"/>
+		<div class="liu_item">
+			<div class="xu">1</div>
+			<div class="val">完善信息</div>
+			<img src="../../assets/sel.png">
+		</div>
+		<div class="liu_item">
+			<div class="xu">2</div>
+			<div class="val">绑定提现银行卡
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">3</div>
+			<div class="val">绑定收款银行卡
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">4</div>
+			<div class="val">充保证金
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">5</div>
+			<div class="val">充余额
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">6</div>
+			<div class="val">自动接单
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">7</div>
+			<div class="val">佣金返利
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">8</div>
+			<div class="val">存入余额宝
+			</div>
+			<div class="img"></div>
+		</div>
+		<div class="liu_item">
+			<div class="xu">9</div>
+			<div class="val">赚取高额利息
+			</div>
+			<div class="img"></div>
+		</div>
+	  <!-- <van-nav-bar title="攒钱流程" left-arrow @click-left="back"></van-nav-bar>
 	  <div class="steps">
 		  <van-steps direction="vertical" :active="0">
 			<van-step>
 			  <h3>完善信息</h3>
-			  <!-- <p>2016-07-12 12:40</p> -->
-			</van-step>
+			  <p>2016-07-12 12:40</p> -->
+			<!-- </van-step>
 			<van-step>
 			  <h3>绑定提现银行卡</h3>
 			</van-step>
@@ -31,7 +85,7 @@
 			<van-step>
 			  <h3>赚取高额利息</h3>
 			</van-step>
-		  </van-steps>
+		</van-steps> -->
 	  	<!-- <van-divider dashed>攒钱流程</van-divider>
 	      <ul>
 	          <li class="step1"><span class="num num1">01</span><span>完 善 個 人 信 息</span></li>
@@ -47,53 +101,89 @@
 	  </div>
 	</div>
 </template>
-
+<style lang="less" scoped>
+.liu_item{
+	margin:.12rem auto 0; 
+	background: #fff;
+	width:6.9rem;
+	height:1.18rem;
+	border-radius:.16rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: .3rem;
+	padding-right: .3rem;
+	.xu{
+		font-size: .56rem;
+		color:rgba(43,51,91,.2);
+		font-weight: 500;
+	}
+	.val{
+		font-size: .28rem;
+		color: #2B335B;
+	}
+	img{
+		width: .56rem;
+		height: .56rem;
+	}
+	.img{
+		width: .56rem;
+		height: .56rem;
+	}
+}
+</style>
 <script>
 	import {getBalance,getIncomeInfo} from '../../api'
+
+	import Back from '../../components/Back.vue';
+
 	export default {
-	  data() {
-	    return {
-	      totalBalance: 0.00,
-	      lastDays: 0.00,
-	      totalIncome: 0.00,
-	      canUse: 0.00,
-	      noUse: 0.00
-	    }
-	  },
-	  methods: {
-	     back() {
-	      this.$router.push('/index')
-	    },
-	    loadData(){
-	      getBalance().then( res => {
-	        console.log(res.code);
-	
-	        if (res.code == 200) {
-	          this.canUse= res.data.balanceAv;
-	          this.noUse = res.data.balanceUn;
-	          this.totalBalance =  res.data.balanceAv +  res.data.balanceUn;
-	        }
-	      }).catch( (e) => {
-	        console.log(e);
-	      });
-	      getIncomeInfo().then(res=> {
-	        console.log(res);
-	        if ( res.code == 200 ) {
-	          this.totalIncome = res.data.totalIncome;
-	          this.lastDays = res.data.recentIncome;
-	        }
-	      }).catch( e => {
-	        console.log(e);
-	      })
-	    },
-	  },
-	  created() {
-	    this.loadData();
-	  }
+		data() {
+			return {
+				totalBalance: 0.00,
+				lastDays: 0.00,
+				totalIncome: 0.00,
+				canUse: 0.00,
+				noUse: 0.00
+			}
+		},
+		components:{
+			Back
+		},
+		methods: {
+			back() {
+				this.$router.push('/index')
+			},
+			loadData(){
+				getBalance().then( res => {
+					console.log(res.code);
+
+					if (res.code == 200) {
+						this.canUse= res.data.balanceAv;
+						this.noUse = res.data.balanceUn;
+						this.totalBalance =  res.data.balanceAv +  res.data.balanceUn;
+					}
+				}).catch( (e) => {
+					console.log(e);
+				});
+				getIncomeInfo().then(res=> {
+					console.log(res);
+					if ( res.code == 200 ) {
+						this.totalIncome = res.data.totalIncome;
+						this.lastDays = res.data.recentIncome;
+					}
+				}).catch( e => {
+					console.log(e);
+				})
+			},
+		},
+		created() {
+			this.loadData();
+		}
 	}
 </script>
-	
-<style>
+
+<!-- <style>
 	.steps {
 	    background-color: #fff;
 	    padding-top: 10px;
@@ -209,4 +299,4 @@
 		   top: 10px;
 		   
 	}
-</style>
+</style> -->

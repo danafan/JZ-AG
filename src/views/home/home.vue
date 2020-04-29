@@ -20,7 +20,7 @@
 				<div class="tabTxt" :class="{'tabTxtSel':activeIndex == '/my'}">我的</div>
 			</div>
 		</div>		
-		<DialogModel @callback="look" @close="showDialog = false" :content="content" v-if="showDialog"/>
+		<DialogModel @callback="look" @close="close" :content="content" v-if="showDialog"/>
 	</div>
 </template>
 <style lang="less" scoped>
@@ -69,15 +69,15 @@
 }
 </style>
 <script>
-	import {isFade} from '../../api'
+	import {isFade,setReadStatus} from '../../api'
 	import DialogModel from '../../components/DialogModel.vue'
 
 	export default{
 		data(){
 			return{
 				activeIndex:"/index",
-				showDialog:true,
-				content:"您有一个订单已完成，现在去看看？",
+				showDialog:false,
+				content:"当前您的订单平台已回款.请注意查收！",
 				timer:null
 			}
 		},
@@ -106,12 +106,10 @@
 					if ( res.code == 200 ) {
 						if ( res.data == 1 ) {
                         	// 取消闪
-                        	console.log("取消闪");
-                        	// this.isBlink = false;
+                        	this.showDialog = false;
                         }else if ( res.data == 0 ) {
                         	// 闪
-                        	// this.isBlink = true;
-                        	console.log("闪");
+                        	this.showDialog = true;
                         }
                     }
                 })
@@ -119,7 +117,13 @@
 			look(){
 				this.showDialog = false;
 				this.$router.push('/trading?type=1');
-				// this.$router.push({path: '/trading',query:{ 'type':'1'}});
+			},
+			close(){
+				setReadStatus().then(res => {
+					if ( res.code == 200 ) {
+						this.showDialog = false;
+					}
+				})
 			},
 			//切换导航
 			checkTab(tab){

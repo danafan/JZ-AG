@@ -11,7 +11,7 @@ const router = new Router({
         component: () =>
         import ("@/views/login/index"),
         meta: {
-            title: "登錄"
+            title: "登录"
         }
     },
     {
@@ -196,27 +196,28 @@ const router = new Router({
         component: () =>
         import ("@/views/my/children/withdrawList")
     },
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
     {
-      path: "/yb/process",
+      path: "/process",
       meta: {
-          title: '攒钱流程',
+          title: '赚钱流程',
       },
       component: () =>
       import ("@/views/yuBao/process")
   },
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
 
   {
     path: "*",

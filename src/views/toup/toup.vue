@@ -3,7 +3,11 @@
         <Back :title="title"/>
         <van-cell class="label_text" title="收款姓名：" :value="rechargeData.toCardName"></van-cell>
         <van-cell class="label_text" title="收款银行：" :value="rechargeData.toBankName"></van-cell>
-        <van-cell class="label_text" title="收款卡号：" :value="rechargeData.toCardNo"></van-cell>
+        <div class="ti">
+            <div class="ti_label">收款卡号：</div>
+            <div class="ti_val">{{rechargeData.toCardNo}}</div>
+        </div>
+        <!-- <van-cell class="label_text" title="收款卡号：" :value="rechargeData.toCardNo"></van-cell> -->
         <van-field
         class="label_text top"
         v-model="rechargeData.cardName"
@@ -32,7 +36,7 @@
         label="充值金额"
         placeholder="请输入充值金额"
         />
-         <van-field
+        <van-field
         class="label_text bottom top"
         v-model="rechargeData.remark"
         type="text"
@@ -101,6 +105,21 @@
     color: #777B8F;
     align-items: center;
 }
+.ti{
+    color: #777B8F;
+    background: #fff;
+    padding-left: .42rem;
+    padding-right: .42rem;
+    height: 1.04rem;
+    font-size: .32rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .ti_val{
+        color: #969799;
+    }
+    
+}
 .top{
     margin-top: .2rem;
 }
@@ -168,9 +187,9 @@
             },
             submitRecharge() {
                 if (!this.rechargeData.cardName) {
-                this.$toast("充值姓名不能为空")
-                return
-            }
+                    this.$toast("充值姓名不能为空")
+                    return
+                }
                 if (!this.rechargeData.bankName) {
                  this.$toast("充值银行不能为空")
                  return

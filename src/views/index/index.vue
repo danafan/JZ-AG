@@ -16,11 +16,11 @@
 					<img src="../../assets/website.png">
 					<div class="item_text">平台官网</div>
 				</div>
-				<div class="category_item">
+				<div class="category_item" @click="$router.push('/process')">
 					<img src="../../assets/process.png">
 					<div class="item_text">赚钱流程</div>
 				</div>
-				<div class="category_item">
+				<div class="category_item" @click="$toast('功能开发中，敬请期待...')">
 					<img src="../../assets/activity.png">
 					<div class="item_text">优惠活动</div>
 				</div>

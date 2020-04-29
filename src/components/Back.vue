@@ -31,8 +31,8 @@
 	transform: rotate(180deg);
 	position: absolute;
 	left: .3rem;
-	width: .23rem;
-	height: .35rem;
+	width: .22rem;
+	height: .36rem;
 }
 
 .title{

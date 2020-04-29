@@ -48,6 +48,12 @@
 			font-size: .4rem;
 			color: #212744;
 			font-weight: 500;
+			animation: text_an 0.2s;
+		}
+		@keyframes text_an
+		{
+			0%   {font-size: .32rem;}
+			100% {font-size: .4rem;}
 		}
 		.line{
 			position: absolute;
@@ -56,6 +62,13 @@
 			background: #5B5FD1;
 			width: .6rem;
 			height: .08rem;
+			animation: line_an 0.3s;
+		}
+		@keyframes line_an
+		{
+			0%   {width: .1rem}
+			50%   {width: .8rem}
+			100% {width: .6rem}
 		}
 	}
 }
@@ -81,7 +94,7 @@
 				this.active_tab = 1;
 			}
 		},
-  		methods:{
+		methods:{
 			//点击切换顶部导航
 			changeTab(index){
 				this.active_tab = index;

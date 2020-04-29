@@ -26,7 +26,7 @@
             <div class="card_row">
                 <img class="pay" src="../../../assets/pay.png">
                 <div class="you">
-                    <div class="mo" :class="{sel_mo:item.defaultFlag != 1}" @click="setDefault(item.id)">{{item.defaultFlag != 1 ? '已设默认':'设为默认'}}</div>
+                    <div class="mo" :class="{sel_mo:item.defaultFlag != 1}" @click="setDefault(item)">{{item.defaultFlag != 1 ? '已设默认':'设为默认'}}</div>
                     <img class="delete" src="../../../assets/delete.png" @click="handlerDelete(item.id)">
                 </div>
                 
@@ -181,11 +181,13 @@
             },
             confirm(){
                 delMemberCode(this.id).then(() => {
+                    this.showDialog = false;
                     this.requestData()
                 })
             },
             confirm1(){
                 setDefaultMemberCode(this.id, 4).then(() => {
+                    this.showDialog1 = false;
                     this.list = []
                     this.requestData()
                 })

@@ -116,10 +116,7 @@
                         this.list = data.rows
                     }
                 }).catch((e) => {
-                    Dialog.alert({
-                        title: '警告',
-                        message: e.message
-                    })
+                    this.$toast(e.message);
                 })
             },
             handlerDelete(id) {
@@ -137,6 +134,7 @@
             },
             confirm(){
                 delMemberBankcard(this.id).then(() => {
+                    this.showDialog = false;
                     this.requestData()
                 })
             }

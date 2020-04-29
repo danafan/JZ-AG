@@ -1,10 +1,10 @@
-import { getMemberAssets, logout, reqPwdLogin, reqSmsLogin } from '@/api'
+import { getMemberAssets, logout, reqPwdLogin, reqSmsLogin,isFade } from '@/api'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 
 const user = {
     state: {
         token: getToken(),
-        member: {},
+        member: {}
     },
 
     mutations: {
@@ -13,7 +13,7 @@ const user = {
         },
         SET_TOKEN: (state, token) => {
             state.token = token
-        },
+        }
     },
 
     actions: {
