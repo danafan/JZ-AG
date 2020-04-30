@@ -1,18 +1,18 @@
 <template>
     <div class="page">
-        <van-nav-bar title="资金明细" left-arrow @click-left="back"></van-nav-bar>
+        <!-- <van-nav-bar title="资金明细" left-arrow @click-left="back"></van-nav-bar>
         <div class="wrap">
             <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
                 <van-list style="width: 95%;border-radius: 5px;margin: 5px auto;" v-model="loading" :finished="finished" :offset="10"
-                          finished-text="沒有更多了" @load="onLoad">
+                finished-text="沒有更多了" @load="onLoad"> -->
                     <!--<van-cell
                             v-for="(item,index) in list"
                             :key="index"
                             :title="item.name"
                             :value="item.saleDate"
-                    />-->
+                            />-->
 
-                    <div class="list" v-for="(item,key) in list" :key="key">
+                   <!--  <div class="list" v-for="(item,key) in list" :key="key">
                         <div class="brankinfo">
                             <p>变动金额：{{'¥'+item.money}}</p>
                             <p>变动时间：{{parseTime(item.createTime)}}</p>
@@ -23,17 +23,112 @@
                         </div>
                     </div>
                 </van-list>
+            </van-pull-refresh> -->
+
+
+
+            <!-- </div> -->
+
+
+            <Back title="资金明细"/>
+            <div class="card_list">
+                <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+                    <van-list v-model="loading" :finished="finished" :offset="10"
+                    finished-text="沒有更多了" @load="onLoad">
+                    <Card v-for="item in list">
+                        <div class="card_content">
+                            <img class="zhang" :src="item.type | imgType">
+                            <div class="money_box">
+                                <img src="../../../assets/rmb.png">
+                                <div class="money_txt">{{item.money}}</div>
+                            </div>
+                            <div class="toast">{{item.remark}}</div>
+                            <div class="line"></div>
+                            <div class="time_box">
+                                <div class="time_label">变动时间</div>
+                                <div class="time_val">{{parseTime(item.createTime)}}</div>
+                            </div>
+                        </div>
+                    </Card>
+                </van-list>
             </van-pull-refresh>
-
-
-
         </div>
     </div>
 </template>
-
+<style lang="less" scoped>
+.page{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+.card_list{
+    padding: .3rem;
+    flex: 1;
+    overflow-y: scroll;
+    .card_content{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        .zhang{
+            position: absolute;
+            top: -.4rem;
+            right: -.3rem;
+            width: 1.2rem;
+            height: 1.16rem;
+        }
+        .money_box{
+            margin-top: .2rem;
+            width: 100%;
+            height: .6rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            img{
+                margin-bottom: .08rem;
+                margin-right: .08rem;
+                width: .36rem;
+                height: .34rem;
+            }
+            .money_txt{
+                font-size: .6rem;
+                color: #212744;
+                font-weight:bold;
+            }
+        }
+        .toast{
+            margin-top: .4rem;
+            width: 100%;
+            text-align: center;
+            font-size: .28rem;
+            color: #777B8F;
+        }
+        .line{
+            margin-top: .3rem;
+            width: 100%;
+            border-bottom: 1px dashed #E4E5EB;
+        }
+        .time_box{
+            margin-top: .38rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: .28rem;
+            color: #777B8F;
+        }
+    }
+}
+</style>
 <script>
     import {listMemberMoneyDetail} from '../../../api'
     import {Tag, Dialog} from 'vant';
+
+    import Back from '../../../components/Back.vue'
+    import Card from '../../../components/Card.vue'
 
     export default {
         data() {
@@ -47,6 +142,10 @@
             }
         },
         mounted() {
+        },
+        components:{
+            Back,
+            Card,
         },
         methods: {
             back() {
@@ -73,11 +172,12 @@
                         this.isLoading = false;
                     }
                 }).catch((e) => {
-                    Dialog.alert({
-                            title: '警告',
-                            message: e.message
-                        }
-                    )
+                    this.$toast(e.message);
+                    // Dialog.alert({
+                    //         title: '警告',
+                    //         message: e.message
+                    //     }
+                    // )
                 })
             },
             onLoad() {
@@ -97,18 +197,39 @@
                         }
                     }
                 }).catch((e) => {
-                    Dialog.alert({
-                            title: '警告',
-                            message: e.message
-                        }
-                    )
+                    this.$toast(e.message);
+                    // Dialog.alert({
+                    //         title: '警告',
+                    //         message: e.message
+                    //     }
+                    // )
                 })
             },
+        },
+        filters:{
+            imgType:function(v){
+                if(v == 1){
+                    return require('../../../assets/m_status_1.png')
+                }else if(v == 2){
+                    return require('../../../assets/m_status_2.png')
+                }else if (v == 3){
+                    return require('../../../assets/m_status_3.png')
+                }else if (v == 4){
+                    return require('../../../assets/m_status_4.png')
+                }else if (v == 5){
+                    return require('../../../assets/m_status_5.png')
+                }else if (v == 6){
+                    return require('../../../assets/m_status_6.png')
+                }else if (v == 7){
+                    return require('../../../assets/m_status_7.png')
+                }
+                
+            }
         }
     }
 </script>
 
-<style lang="less" scoped>
+<!-- <style lang="less" scoped>
     .page {
         .wrap {
             width: 95%;
@@ -156,4 +277,4 @@
             }
         }
     }
-</style>
+</style> -->

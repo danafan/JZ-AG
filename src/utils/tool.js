@@ -5,9 +5,9 @@
 export function parseMoneyType(type) {
   switch (type) {
     case 1:
-      return '保證金';
+      return '保证金';
     case 2:
-      return '餘額';
+      return '余额';
   }
 }
 //（1充值中 2已完成 3已取消 4已关闭）
@@ -57,7 +57,7 @@ export function parseOrderStatus(type) {
     case 2:
       return '代付款';
     case 3:
-      return '待確認';
+      return '待确认';
     case 4:
       return '已完成';
   }
@@ -69,17 +69,17 @@ export function parseMoneyDetailType(type) {
     case 1:
       return '充值';
     case 2:
-      return '提現';
+      return '提现';
     case 3:
-      return '訂單收款';
+      return '订单收款';
     case 4:
-      return '訂單佣金';
+      return '订单佣金';
     case 5:
       return '代理佣金';
     case 6:
-      return '提現取消';
+      return '提现取消';
     case 7:
-      return '訂單取消';
+      return '订单取消';
   }
 }
 

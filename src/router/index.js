@@ -204,6 +204,7 @@ const router = new Router({
       component: () =>
       import ("@/views/yuBao/process")
   },
+  
 
 
 
@@ -211,13 +212,12 @@ const router = new Router({
 
 
 
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 
   {
     path: "*",

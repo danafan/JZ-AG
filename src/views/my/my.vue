@@ -77,7 +77,7 @@
             </div>
             <div class="my_item" @click="$router.push('/withdrawList')">
                 <img src="../../assets/withdrawal_list.png">
-                <div class="cate_text">提现列表</div>
+                <div class="cate_text">提现记录</div>
             </div>
             <div class="my_item" v-if="userType == 2" @click="$router.push('/subList')">
                 <img src="../../assets/level.png">
@@ -310,7 +310,7 @@
     width: 100%;
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
     .my_item{
         background: #fff;
         width: 2.5rem;

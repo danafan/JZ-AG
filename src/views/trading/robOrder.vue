@@ -24,7 +24,7 @@
             </div>
         </div>
         <Button text="自动挂单" :active_submit="true" @callback="startAccept" v-if="hoStatus == 1"/>
-        <div class="primary" @click="cancelAccept" v-if="hoStatus == 2">解除任务</div>
+        <div class="primary" @click="cancelAccept" v-if="hoStatus == 2">取消挂单</div>
         <div class="warning" v-if="hoStatus == 3">后台锁定中...</div>
     </div>
 </template>

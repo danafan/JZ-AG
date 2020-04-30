@@ -9,7 +9,7 @@
             <div class="label">修改登录密码</div>
             <img src="../../../assets/jian.png">
         </div>
-        <div class="set_item" @click="$router.push('/capitalModified')">
+        <div class="set_item null" @click="$router.push('/capitalModified')">
             <div class="label">修改资金密码</div>
             <img src="../../../assets/jian.png">
         </div>
@@ -44,6 +44,9 @@
 .top{
     margin-top: .2rem;
     margin-bottom: 6.34rem;
+    border:none;
+}
+.null{
     border:none;
 }
 </style>

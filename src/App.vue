@@ -12,7 +12,7 @@
     created(){
       const token = getToken();
       if (token) {
-        this.$router.push('/index');
+        this.$router.push('/my');
       } else {
         this.$router.replace('/login');
       }
@@ -31,6 +31,14 @@
 }
 .van-list__finished-text{
   font-size: .26rem!important;
+}
+.van-nav-bar__title{
+  font-size: .32rem!important;
+  color: #212744!important;
+  font-weight: 400!important;
+}
+.van-action-sheet__header{
+  font-size: .36rem!important;
 }
 </style>
 

@@ -14,11 +14,17 @@
                 <img src="../../assets/service_icon.png">
                 <div class="but_txt">在线客服</div>
             </div>
-            <div class="but">
+            <div class="but" @click="show_sheet = true">
                 <img src="../../assets/change_icon.png">
                 <div class="but_txt">切换线路</div>
             </div>
         </div>
+        <van-action-sheet v-model="show_sheet" title="选择线路" :round="false" @cancel="show_sheet = false">
+            <div class="sheet_item" :class="{sel_item:active_item == index}" v-for="(item,index) in actions" @click="onSelect(index)">
+                <div class="name">{{item.name}}</div>
+                <div class="toast">{{randomNum(300,500)}}ms</div>
+            </div>
+        </van-action-sheet>
     </div>
 </template>
 <style lang="less" scoped>
@@ -103,6 +109,24 @@
         }
     }
 }
+.sheet_item{
+    border-bottom:1px solid #E3E5E8;
+    width: 100%;
+    height: 1.04rem;
+    font-size: .32rem;
+    color: #242629;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .toast{
+        margin-left: .2rem;
+        font-size: .26rem;
+        color: #F15E21;
+    }
+}
+.sel_item{
+    color: #5B5FD1;
+}
 </style>
 <script>
     import {Toast} from 'vant'
@@ -118,10 +142,25 @@
                 captcha: '', // 图形验证码
                 codeUrl: '',
                 active_submit:false,        //默认按钮不高亮
+                show_sheet:false,
+                actions:[{
+                    name:"线路一"
+                },{
+                    name:"线路二"
+                },{
+                    name:"线路三"
+                },],
+                active_item:0
             };
         },
         mounted() {
             this.getCaptcha();
+        },
+        created(){
+            let item_index = localStorage.getItem("itemIndex");
+            if(!!item_index){
+                this.active_item = item_index;
+            }
         },
         watch:{
             username:function(n,o){
@@ -141,6 +180,31 @@
             },
         },
         methods: {
+            randomNum(minNum,maxNum){ 
+                switch(arguments.length){ 
+                    case 1: 
+                    return parseInt(Math.random()*minNum+1,10); 
+                    break; 
+                    case 2: 
+                    return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+                    break; 
+                    default: 
+                    return 0; 
+                    break; 
+                } 
+            },
+            onSelect(index){
+                this.active_item = index;
+                localStorage.setItem("itemIndex",index);
+                this.show_sheet = false;
+                this.$toast("切换中，请稍后...")
+                setTimeout(() => {
+                    this.$toast("切换成功，正在跳转...");
+                    setTimeout(() => {
+                        this.$router.go(0);
+                    },1500);
+                },1500);
+            },
             //检验表单是否填写完整
             checkInput(){
                 if (!!this.username && !!this.password && !!this.code){
