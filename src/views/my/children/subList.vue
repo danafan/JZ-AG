@@ -20,10 +20,12 @@
 			</div> -->
 			<van-popup v-model="show" position="bottom" closeable :style="{height:'100%'}" @close="closePopup">
                 <!-- 新增下级 -->
-			    <newlower v-if="showLower" @close="closePopup1"></newlower>
+                <newlower v-if="showLower" @close="closePopup1"></newlower>
                 <!-- 设置佣点 -->
-			    <setServants v-if="showServant" :itemdata="changeItem" @close="closePopup1"></setServants>
-			</van-popup>
+                <setServants v-if="showServant" :itemdata="changeItem" @close="closePopup1"></setServants>
+                <!-- 下级详情 -->
+                <mySub v-if="showlowerInfo" :changeInfo="changeInfo" @close="closePang"></mySub>
+            </van-popup>
 			<!-- <van-dialog
 			        v-model="showlowerInfo"
 			        title="下级信息"
@@ -40,7 +42,7 @@
 			        <van-cell title="注册日期" :value="changeInfo.registerTime?parseTime(changeInfo.registerTime):''"></van-cell>
 			    </div>
 			</van-dialog> -->
-		<!-- </div> -->
+          <!-- </div> -->
 		<!-- <div class="joinbtn" @click="setprice">
 		    +
 		</div> -->
@@ -58,7 +60,11 @@
            </div>
            <div class="two_row">
             <div class="role_name">姓名：{{item.realName}}</div>
-            <div class="set_but" @click="setServantclick(item)">设置佣点</div>
+            <div class="buts">
+                <div class="set_but" @click="setServantclick(item)">设置佣点</div>
+                <div class="set_but" @click="getMysub(item)">查看</div>
+            </div>
+            
         </div>
         <div class="line"></div>
         <div class="time_box">
@@ -126,16 +132,22 @@
             font-size: .28rem;
             color: #777B8F;
         }
-        .set_but{
-            border-radius: .04rem;
-            background: #5B5FD1;
-            width: 1.2rem;
-            text-align: center;
-            height: .52rem;
-            line-height: .52rem;
-            font-size: .24rem;
-            color: #FFFFFF;
+        .buts{
+            display: flex;
+            align-items: center;
+            .set_but{
+                margin-left: .2rem;
+                border-radius: .04rem;
+                background: #5B5FD1;
+                width: 1.2rem;
+                text-align: center;
+                height: .52rem;
+                line-height: .52rem;
+                font-size: .24rem;
+                color: #FFFFFF;
+            }
         }
+        
     }
     .line{
         margin-top: .3rem;
@@ -164,6 +176,7 @@
 <script>
     import newlower from './newlower'
     import setServants from './setServants'
+    import mySub from './mySub.vue'
     import {listSubs} from '../../../api'
     import {Dialog} from 'vant'
 
@@ -183,9 +196,19 @@
                 changeInfo: {}
             }
         },
+        watch:{
+            show:function(n,o){
+                if(n == false){
+                    this.showLower = false;
+                    this.showServant = false;
+                    this.showlowerInfo = false;
+                }
+            }
+        },
         components: {
             newlower,
             setServants,
+            mySub,
             Back,
             Card,
             Button
@@ -203,6 +226,15 @@
                 this.showLower = false
                 this.showServant = false
                 this.requestData()
+            },
+            getMysub(item){
+                this.show = true;
+                this.showlowerInfo = true;
+                this.changeInfo = item;
+            },
+            closePang(){
+                this.show = false;
+                this.showlowerInfo = false;
             },
             closePopup1() {
                 this.show = false

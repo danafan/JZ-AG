@@ -20,13 +20,13 @@
         placeholder="请输入资金密码"
         />
 
-        <van-field
+        <!-- <van-field
         class="label_text"
         v-model="withdrawData.idCard"
         type="number"
         label="身份证号码："
         placeholder="请输入身份证号码"
-        />
+        /> -->
         <van-field
         class="label_text bottom"
         v-model="withdrawData.applyMoney"
@@ -94,12 +94,23 @@
         <div class="logout f16 flex fcc bg-fff fixed w100pc" @click="submitWithdraw">
             <p class="blue">确认</p>
         </div> --> 
-        <CheckBank @callback="changeBounced" @close="show_bounced = false" :bankList="memberBankcardList" title="请选择银行" v-show="show_bounced"/>
-    </div>
+        <!--  <CheckBank @callback="changeBounced" @close="show_bounced = false" :bankList="memberBankcardList" title="请选择银行" v-show="show_bounced"/> -->
+
+        <van-action-sheet v-model="show_bounced" title="请选择银行" :round="false" @cancel="show_bounced = false">
+           <div class="bank_list">
+            <div class="bank_item" v-for="(item,index) in memberBankcardList" @click="changeBounced(item)">
+                <div class="left">
+                    <img class="icon" src="../../assets/pay.png">
+                    <div class="bank_text">{{item.bankName}}<span>（{{item.cardNo.substring(item.cardNo.length-4)}}）</span></div>
+                </div>
+            </div>
+        </div>
+    </van-action-sheet>
+</div>
 </template>
 <style lang="less" scoped>
 .van-popup{
-    border:1px solid red;
+    // border:1px solid red;
 }
 .van-notice-bar {
     height: .66rem;
@@ -116,6 +127,43 @@
 }
 .bottom{
     margin-bottom: 1.4rem;
+}
+.bank_list{
+    flex:1;
+    overflow-y: scroll;
+}
+.bank_item{
+    padding-left: .65rem;
+    padding-right: .36rem;
+    border-bottom: 1px solid #dedede;
+    height: .98rem;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.left{
+    display:flex;
+    align-items: center;
+}
+.icon{
+    margin-right: .2rem;
+    width: .42rem;
+    height: .42rem;
+}
+.bank_text{
+    display:flex;
+    align-items: center;
+    font-size: .28rem;
+    color: #2e2e2e;
+    span{
+        color: #777B8F;
+    }
+}
+.sel_bank_text{
+    color: #5B5FD1;
+    span{
+        color: #5B5FD1;
+    }
 }
 </style>
 <script>
@@ -138,7 +186,7 @@
                     cardName: '',
                     cardNo: '',
                     assetsPassword: '',
-                    idCard: '',
+                    // idCard: '',
                 },
                 type: 1,
                 title: '',
@@ -197,10 +245,9 @@
                     )
             },
             //子组件方法
-            changeBounced(v){
+            changeBounced(v,){
                 this.show_bounced = false;
                 // this.bank_info = v;
-                console.log(v)
                 this.value = v.cardNo;
                 // let bankcard = this.memberBankcardList.find(e=>e.cardNo == value)
                 this.withdrawData.bankcardId = v.id
@@ -222,10 +269,10 @@
                     this.$toast("请输入资金密码")
                     return
                 }
-                if (!this.withdrawData.idCard) {
-                    this.$toast("请输入身份证号码")
-                    return
-                }
+                // if (!this.withdrawData.idCard) {
+                //     this.$toast("请输入身份证号码")
+                //     return
+                // }
                 if (!this.withdrawData.applyMoney) {
                     this.$toast("提现金额不能为空")
                     return

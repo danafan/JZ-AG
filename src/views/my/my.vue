@@ -29,7 +29,7 @@
                         <div class="money_text">会员佣金</div>
                         <div class="money_val">{{userInfo.agentMoney}}</div>
                     </div>
-                    <div class="money_item"  v-if="userType == 1">
+                    <div class="money_item"  v-if="userType == 2">
                         <div class="money_text">代理佣金</div>
                         <div class="money_val">{{userInfo.dlAgentMoney}}</div>
                     </div>
@@ -37,9 +37,13 @@
                         <div class="money_text">当日会员佣金</div>
                         <div class="money_val">{{userInfo.todayIncome || 0}}</div>
                     </div>
-                    <div class="money_item" v-if="userType == 1">
+                    <div class="money_item" v-if="userType == 2">
                         <div class="money_text">当日代理佣金</div>
-                        <div class="money_val">{{userInfo.todayAgentIncome}}</div>
+                        <div class="money_val">{{userInfo.todayAgentIncome || 0}}</div>
+                    </div>
+                    <div class="money_item" style="opacity: 0">
+                        <div class="money_text">当日会员佣金</div>
+                        <div class="money_val">{{userInfo.todayIncome || 0}}</div>
                     </div>
                 </div>
             </div>

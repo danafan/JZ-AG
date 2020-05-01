@@ -94,6 +94,13 @@
 				this.active_tab = 1;
 			}
 		},
+		watch:{
+			$route(to,from){
+				if(to.query.type == '1'){
+					this.active_tab = 1;
+				};
+			}
+		},
 		methods:{
 			//点击切换顶部导航
 			changeTab(index){

@@ -12,7 +12,7 @@
 					<img src="../../assets/service.png">
 					<div class="item_text">在线客服</div>
 				</div>
-				<div class="category_item">
+				<div class="category_item" @click="guan">
 					<img src="../../assets/website.png">
 					<div class="item_text">平台官网</div>
 				</div>
@@ -34,7 +34,7 @@
 			<Card>
 				<img class="left_top_icon" src="../../assets/announcement_icon.png">
 				<div class="announcement_content">
-					欢迎各位用户来到智汇,我们的待遇虽然不是最好的但是一定是最稳的!希望大家踊跃接单!共筑未来!
+					平台每日运营时间为11:00至2:00！纯菠菜资金！安全放心！暂时停止二维码收款！具体恢复时间等待通知！
 				</div>
 			</Card>
 		</div>
@@ -79,6 +79,8 @@
 	}
 }
 .bottom_content{
+	position: relative;
+	top:-.44rem;
 	width: 100%;
 	padding-left: .3rem;
 	padding-right: .3rem;
@@ -106,7 +108,7 @@
 	export default {
 		data() {
 			return {
-				notice_text:"欢迎各位用户来到智汇,我们的待遇虽然不是最好的但是一定是最稳的!希望大家踊跃接单!共筑未来!",
+				notice_text:"平台每日运营时间为11:00至2:00！纯菠菜资金！安全放心！暂时停止二维码收款！具体恢复时间等待通知！",
 				left_icon:require('../../assets/notice_icon.png'),
 				noticeList: [],
 				images: [
@@ -170,6 +172,9 @@
 			// },1)
 		},
 		methods: {
+			guan(){
+				window.location.href = "http://gf.agpay8.com";
+			}
 			// Num(){
 			// 	var rand = "";
 			// 	for(var i = 0; i < 3; i++){

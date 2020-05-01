@@ -26,16 +26,16 @@
         class="label_text"
         v-model="memberInfo.realName"
         type="text"
-        label="身份证名字"
+        label="姓名"
         :disabled="!isModify"
         />
-        <van-field
+        <!-- <van-field
         class="label_text bottom"
         v-model="memberInfo.idCard"
         type="text"
         label="身份证号码"
         :disabled="!isModify"
-        />
+        /> -->
         <Button v-if="isModify" text="确定" :active_submit="true" @callback="submit"/>
         <!-- </van-cell-group> -->
         <!-- <div v-if="isModify" class="logout f16 flex fcc bg-fff fixed w100pc" @click="submit">
@@ -78,7 +78,7 @@
                     id: '',
                     username: '',
                     phone: '',
-                    idCard: '',
+                    // idCard: '',
                     realName: '',
                     nickname: '',
                     inviteCode: '',
@@ -95,7 +95,10 @@
             getMemberInfo() {
                 this.$store.dispatch('GetMemberInfo').then(() => {
                     this.memberInfo = {...this.member}
-                    if (!this.memberInfo.realName || !this.memberInfo.idCard || !this.memberInfo.phone) {
+                    // if (!this.memberInfo.realName || !this.memberInfo.idCard || !this.memberInfo.phone) {
+                    //     this.isModify = true
+                    // }
+                    if (!this.memberInfo.realName || !this.memberInfo.phone) {
                         this.isModify = true
                     }
                 })
@@ -116,10 +119,10 @@
                     return
                 }
                 let idCardReg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/
-                if (!idCardReg.test(this.memberInfo.idCard)) {
-                    Toast('身份证号码格式有誤');
-                    return
-                }
+                // if (!idCardReg.test(this.memberInfo.idCard)) {
+                //     Toast('身份证号码格式有誤');
+                //     return
+                // }
                 updateMemberBaseInfo(this.memberInfo).then(response => {
                     if (response.code === 200) {
                         this.$toast('编辑成功')

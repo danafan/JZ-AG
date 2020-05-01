@@ -18,20 +18,20 @@ const list = ['/api/rp/common/getMemberAssets', '/api/rp/order/listQiangdanOrder
 let showToast = true
 request.interceptors.request.use(
     config => {
-        if (list.indexOf(config.url) > -1) {
-            showToast = false
-        } else {
-            showToast = true
-        }
+        // if (list.indexOf(config.url) > -1) {
+        //     showToast = false
+        // } else {
+        //     showToast = true
+        // }
         if (getToken()) {
             config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
         }
-        if (showToast) {
-            toast = Toast.loading({
-                message: '加载中...',
-                forbidClick: true
-            });
-        }
+        // if (showToast) {
+        //     toast = Toast.loading({
+        //         message: '加载中...',
+        //         forbidClick: true
+        //     });
+        // }
         return config
     },
     error => {
@@ -42,34 +42,26 @@ request.interceptors.request.use(
 
 // 响应拦截器
 request.interceptors.response.use(res => {
-    if (showToast) {
-        toast.clear()
-    }
+    // if (showToast) {
+    //     toast.clear()
+    // }
     const code = res.data.code
     if (code === 401) {
         Toast("挂机时间过长，请重新登录！")
         store.dispatch('LogOut').then(() => {
             router.replace('/login');
         })
-        // Dialog.alert({
-        //     title: '温馨提示',
-        //     message: '登录状态已过期'
-        // }).then(() => {
-        //     store.dispatch('LogOut').then(() => {
-        //         router.replace('/login');
-        //     })
-        // });
     } else if (code !== 200) {
-     Toast(res.data.msg || res.msg)
-     return Promise.reject(res.data)
- } else {
+       Toast(res.data.msg || res.msg)
+       return Promise.reject(res.data)
+   }else {
     return Promise.resolve(res.data)
 }
 },
 error => {
-    if (showToast) {
-        toast.clear()
-    }
+    // if (showToast) {
+    //     toast.clear()
+    // }
     Toast("系统内部错误")
     return Promise.reject(error)
 }

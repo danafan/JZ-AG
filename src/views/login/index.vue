@@ -2,11 +2,21 @@
     <div class="login_box">
         <img class="logo" src="../../assets/logo.png">
         <div class="title">AG官方唯一合作伙伴</div>
-        <input class="input_box" type="text" placeholder="请输入用户名" v-model="username">
-        <input class="input_box" type="password" placeholder="请输入密码" v-model="password">
+        <div class="input_box">
+            <div class="label">账号：</div>
+            <input type="text" placeholder="请输入账号" v-model="username">
+        </div>
+        <div class="input_box">
+            <div class="label">密码：</div>
+            <input class="input_box" type="password" placeholder="请输入密码" v-model="password">
+        </div>
         <div class="code_box">
-            <input class="code_input" type="text" placeholder="请输入验证码" v-model="code">
-            <img class="code_icon" :src="codeUrl" @click="getCaptcha">
+            <div class="label">验证码：</div>
+            <div class="right">
+                <input class="code_input" type="text" placeholder="请输入验证码" v-model="code">
+                <img class="code_icon" :src="codeUrl" @click="getCaptcha">
+            </div>
+            
         </div>
         <Button text="登录" :active_submit="active_submit" @callback="login"/>
         <div class="bottom_buts">
@@ -50,64 +60,88 @@
         color: #242629;
     }
     .input_box{
-        border:none;
-        outline: none;
         width: 6rem;
         height: .96rem;
         border-bottom: 1px solid #E3E5E8;
         font-size: .32rem;
+        display: flex;
+        align-items: center;
+        .label{
+         width: 1.52rem;
+         color: #333;
+     }
+     input{
+        flex:1;
+        height: .8rem;
+        border:none;
+        outline: none;
     }
-    .code_box{
-        margin-bottom:.72rem;
-        width: 6rem;
-        height: .96rem;
-        border-bottom: 1px solid #E3E5E8;
+}
+.code_box{
+    margin-bottom:.72rem;
+    width: 6rem;
+    height: .96rem;
+    border-bottom: 1px solid #E3E5E8;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    .label{
+        width: 1.4rem;
+        color: #333;
+        font-size: .32rem;
+    }
+    .right{
+     flex:1;
+     display: flex;
+     align-items: center;
+     .code_input{
+        width: 1rem;
+        border:none;
+        outline: none;
+        flex:1;
+        font-size: .32rem;
+    }
+    .code_icon{
+        width: 1.52rem;
+        height: .72rem;
+    }
+}
+
+}
+input::-webkit-input-placeholder {
+    color:#C1C1C7;
+}
+input:-moz-placeholder {
+    color:#C1C1C7;
+}
+input:-ms-input-placeholder {
+    color:#C1C1C7;
+}
+.bottom_buts{
+    margin-top: .3rem;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    .but{
+        border:1px solid #5B5FD1;
+        border-radius: .24rem;
+        width: 1.7rem;
+        height: .48rem;
         display:flex;
         align-items: center;
-        justify-content: space-between;
-        .code_input{
-            flex:1;
-            font-size: .32rem;
+        justify-content: center;
+        img{
+            width: .28rem;
+            height: .28rem;
         }
-        .code_icon{
-            width: 1.52rem;
-            height: .72rem;
-        }
-    }
-    input::-webkit-input-placeholder {
-        color:#C1C1C7;
-    }
-    input:-moz-placeholder {
-        color:#C1C1C7;
-    }
-    input:-ms-input-placeholder {
-        color:#C1C1C7;
-    }
-    .bottom_buts{
-        margin-top: 2.74rem;
-        width: 100%;
-        display:flex;
-        align-items: center;
-        justify-content: space-between;
-        .but{
-            border:1px solid #5B5FD1;
-            border-radius: .24rem;
-            width: 1.7rem;
-            height: .48rem;
-            display:flex;
-            align-items: center;
-            justify-content: center;
-            img{
-                width: .28rem;
-                height: .28rem;
-            }
-            .but_txt{
-                margin-left: .05rem;
-                font-size: .24rem;
-                color: #5B5FD1;
-            }
+        .but_txt{
+            margin-left: .05rem;
+            font-size: .24rem;
+            color: #5B5FD1;
         }
     }
+}
 }
 .sheet_item{
     border-bottom:1px solid #E3E5E8;
@@ -214,7 +248,7 @@
                 }
             },
             // 异步登录
-            async login() {
+            login() {
                 // 密码登陆
                 if (!this.username) {
                     // 用户名必须指定
@@ -235,14 +269,15 @@
                     password:this.password,
                     code:this.code
                 }
-                this.$store.dispatch("Login", userData).then(() => {
+                this.$store.dispatch("Login", userData).then((res) => {
                     this.$router.replace('/index');
-                }).catch(() => {
-                    this.getCaptcha()
+                }).catch((err) => {
+                    this.getCaptcha();
                 });
             },
             // 获取一个新的图片验证码
             getCaptcha() {
+
                 getCodeImg().then(res => {
                     this.codeUrl = "data:image/gif;base64," + res.img;
                     this.uuid = res.uuid;

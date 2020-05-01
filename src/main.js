@@ -10,7 +10,7 @@ import store from "./store/index";
 
 import "@/components/Vant";
 // rem
-import "amfe-flexible";
+// import "amfe-flexible";
 import {parseMoneyDetailType, parseMoneyType, parseOrderStatus, parseOrderType, parseTime, parseRechargeStatus, parseWithdrawStatus} from "@/utils/tool";
 
 // 把变量挂载到vue的原型上

@@ -1,5 +1,6 @@
 import { getMemberAssets, logout, reqPwdLogin, reqSmsLogin,isFade } from '@/api'
 import { getToken, removeToken, setToken } from '@/utils/auth'
+import {Toast} from 'vant'
 
 const user = {
     state: {
@@ -19,6 +20,7 @@ const user = {
     actions: {
         // 登录
         Login({ commit }, userInfo) {
+
             const username = userInfo.username.trim()
             const password = userInfo.password
             const code = userInfo.code
@@ -29,6 +31,7 @@ const user = {
                     commit('SET_TOKEN', res.token)
                     resolve()
                 }).catch(error => {
+                    Toast(error.msg)
                     reject(error)
                 })
             })

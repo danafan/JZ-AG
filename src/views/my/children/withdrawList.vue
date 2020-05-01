@@ -22,7 +22,7 @@
                 <img class="zhang" :src="item.status | imgType">
                 <div class="money_box">
                     <img src="../../../assets/rmb.png">
-                    <div class="money_txt">{{item.applyMoney}}<span>（到账：100）</span></div>
+                    <div class="money_txt">{{item.applyMoney}}<span>（到账：{{item.money}}）</span></div>
                 </div>
                 <div class="toast">{{parseMoneyType(item.type)}}提现</div>
                 <div class="line"></div>

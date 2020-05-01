@@ -43,7 +43,7 @@
 }
 .top{
     margin-top: .2rem;
-    margin-bottom: 6.34rem;
+    margin-bottom: 5rem;
     border:none;
 }
 .null{

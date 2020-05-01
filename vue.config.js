@@ -29,11 +29,11 @@ module.exports = {
             },
             postcss: {
                 plugins: [
-                    autoprefixer(),
-                    pxtorem({
-                        rootValue: 37.5,
-                        propList: ["*"]
-                    })
+                autoprefixer(),
+                pxtorem({
+                    rootValue: 37.5,
+                    propList: ["*"]
+                })
                 ]
             }
         }
@@ -119,7 +119,7 @@ module.exports = {
             "/api": {
                 // target: "http://47.101.150.42:8080/prod-api",
                 // target: "http://h5.ph158.cn",
-                target:"http://www.zhihui666.cn",
+                target:"http://www.agpay8.com",
                 // target: "http://47.93.238.228:8888/",
                 // target: "http://localhost:8888",
                 ws: true,
@@ -130,7 +130,7 @@ module.exports = {
                 }
             },
             "/commonApi": {
-                target:"http://www.zhihui666.cn",
+                target:"http://www.agpay8.com",
                // http://103.230.241.173:8989/
                 // target: "http://47.101.150.42:8080/prod-api",
                 // target: "http://h5.ph158.cn/prod-api",
@@ -144,5 +144,9 @@ module.exports = {
                 }
             },
         }
-    }
+    },
+    // dev:{
+    //     host:"192.168.31.205",
+    //     port:8080
+    // }
 };

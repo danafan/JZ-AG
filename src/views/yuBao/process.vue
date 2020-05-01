@@ -1,59 +1,60 @@
 <template>
-	<div class="wrap">
+	<div class="page">
 		<Back title="赚钱流程"/>
-		<div class="liu_item">
-			<div class="xu">1</div>
-			<div class="val">完善信息</div>
-			<img src="../../assets/sel.png">
-		</div>
-		<div class="liu_item">
-			<div class="xu">2</div>
-			<div class="val">绑定提现银行卡
+		<div class="card_list">
+			<div class="liu_item">
+				<div class="xu">1</div>
+				<div class="val">完善信息</div>
+				<img src="../../assets/sel.png">
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">3</div>
-			<div class="val">绑定收款银行卡
+			<div class="liu_item">
+				<div class="xu">2</div>
+				<div class="val">绑定提现银行卡
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">4</div>
-			<div class="val">充保证金
+			<div class="liu_item">
+				<div class="xu">3</div>
+				<div class="val">绑定收款银行卡
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">5</div>
-			<div class="val">充余额
+			<div class="liu_item">
+				<div class="xu">4</div>
+				<div class="val">充保证金
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">6</div>
-			<div class="val">自动接单
+			<div class="liu_item">
+				<div class="xu">5</div>
+				<div class="val">充余额
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">7</div>
-			<div class="val">佣金返利
+			<div class="liu_item">
+				<div class="xu">6</div>
+				<div class="val">自动接单
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">8</div>
-			<div class="val">存入余额宝
+			<div class="liu_item">
+				<div class="xu">7</div>
+				<div class="val">佣金返利
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
-		<div class="liu_item">
-			<div class="xu">9</div>
-			<div class="val">赚取高额利息
+			<div class="liu_item">
+				<div class="xu">8</div>
+				<div class="val">存入余额宝
+				</div>
+				<div class="img"></div>
 			</div>
-			<div class="img"></div>
-		</div>
+			<div class="liu_item">
+				<div class="xu">9</div>
+				<div class="val">赚取高额利息
+				</div>
+				<div class="img"></div>
+			</div>
 	  <!-- <van-nav-bar title="攒钱流程" left-arrow @click-left="back"></van-nav-bar>
 	  <div class="steps">
 		  <van-steps direction="vertical" :active="0">
@@ -102,8 +103,22 @@
 	</div>
 </template>
 <style lang="less" scoped>
+.page{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display:flex;
+	flex-direction: column;
+}
+.card_list{
+	padding: .3rem;
+	flex: 1;
+	overflow-y: scroll;
+}
 .liu_item{
-	margin:.12rem auto 0; 
+	margin-bottom:.12rem; 
 	background: #fff;
 	width:6.9rem;
 	height:1.18rem;
