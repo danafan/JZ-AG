@@ -26,7 +26,7 @@ const router = new Router({
             component: () =>
             import ("@/views/index/index"),
             meta: {
-                title: "首頁"
+                title: "首页"
             }
         },{
             path: "/trading",

@@ -8,7 +8,7 @@
 		<div class="top_content">
 			<van-notice-bar :text="notice_text" :left-icon="left_icon" :speed="50" :scrollable="true" />
 			<div class="category_box">
-				<div class="category_item">
+				<div class="category_item" @click="local()">
 					<img src="../../assets/service.png">
 					<div class="item_text">在线客服</div>
 				</div>
@@ -34,7 +34,12 @@
 			<Card>
 				<img class="left_top_icon" src="../../assets/announcement_icon.png">
 				<div class="announcement_content">
-					平台每日运营时间为11:00至2:00！纯菠菜资金！安全放心！暂时停止二维码收款！具体恢复时间等待通知！
+					<p>
+						平台单多量大，全部由上游AG总公司实时派发…放心抢！ 平均每单会在20-30分钟内回款、请耐心等候！
+					</p>
+					<p>
+						平台将不定期更换卡号,请注意卡号的变动！如若转错，系统将待12小时后自动退还至平台余额！
+					</p>
 				</div>
 			</Card>
 		</div>
@@ -85,6 +90,7 @@
 	padding-left: .3rem;
 	padding-right: .3rem;
 	.left_top_icon{
+		display: block;
 		position: relative;
 		top: -.2rem;
 		left: -.3rem;
@@ -98,7 +104,7 @@
 	.announcement_content{
 		line-height: .6rem;
 		font-size: .28rem;
-		color: #777B8F;
+		color: #F3903F;
 	}
 }
 </style>
@@ -112,9 +118,9 @@
 				left_icon:require('../../assets/notice_icon.png'),
 				noticeList: [],
 				images: [
-				require("@/assets/img/index/1.jpg"),
-				require("@/assets/img/index/2.jpg"),
-				require("@/assets/img/index/3.jpg")
+				require("@/assets/img/index/banner1.png"),
+				require("@/assets/img/index/banner2.png"),
+				require("@/assets/img/index/banner3.png")
 				],
 				// dataList:[
 				// {"tel":"152****7045","money":"784"},
@@ -172,6 +178,9 @@
 			// },1)
 		},
 		methods: {
+			local(){
+                window.location.href = "https://tb.53kf.com/code/client/9afd0197934d34ad72809a2e538c54b65/1";
+            },
 			guan(){
 				window.location.href = "http://gf.agpay8.com";
 			}

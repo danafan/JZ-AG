@@ -40,6 +40,11 @@
 .van-action-sheet__header{
   font-size: .36rem!important;
 }
+.van-action-sheet__header,.van-hairline--bottom{
+  color:#fff;
+  background: #474980;
+  /*background: #F15E21!important;*/
+}
 </style>
 
 

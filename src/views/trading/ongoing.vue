@@ -4,18 +4,18 @@
             <van-list v-model="loading" :finished="finished" :offset="10"
             finished-text="已经到底了" @load="onLoad">
             <Card v-for="(item,index) in list">
-               <div class="top_row">
-                   <img class="pay" src="../../assets/pay.png">
-                   <div class="money"><span>¥</span>{{item.money}}</div>
-               </div>
-               <div class="over">已完成</div>
-               <div class="create_time">
-                   <div class="time_title">订单时间</div>
-                   <div class="time_content">{{parseTime(item.createTime)}}</div>
-               </div>
-           </Card>
-       </van-list>
-   </van-pull-refresh>
+             <div class="top_row">
+                 <img class="pay" src="../../assets/pay.png">
+                 <div class="money"><span>¥</span>{{item.money}}</div>
+             </div>
+             <Sheng :endTime="item.matchTime"/>
+             <div class="create_time">
+                 <div class="time_title">订单时间</div>
+                 <div class="time_content">{{parseTime(item.createTime)}}</div>
+             </div>
+         </Card>
+     </van-list>
+ </van-pull-refresh>
 </div>
 </template>
 <style lang="less" scoped>
@@ -53,8 +53,9 @@
     width: 100%;
     text-align: center;
     font-size: .32rem;
-    color: #212744;
+    // color: #212744;
     font-weight:500;
+    color: #F3903F;
 }
 .create_time{
     margin-top: .4rem;
@@ -70,6 +71,7 @@
     import {listShoudanOrder,setReadStatus} from '../../api'
     import {Dialog} from 'vant';
     import Card from '../../components/Card.vue';
+    import Sheng from '../../components/Sheng.vue'
 
     export default {
         data() {
@@ -79,7 +81,7 @@
                 loading: false,
                 finished: false,
                 isLoading: false,
-                pageIndex: 1,
+                pageIndex: 1
             };
         },
         methods: {
@@ -89,7 +91,7 @@
                 let queryParams = {
                     pageNum: this.pageIndex,
                     pageSize: 15,
-                    status: 4, // 订单状态（1匹配中 2待付款 3已付款 4已完成）
+                    status: 2, // 订单状态（1匹配中 2待付款 3已付款 4已完成）
                 }
                 listShoudanOrder(queryParams).then(data => {
                     if (data && data.code == 200) {
@@ -106,18 +108,13 @@
                     }
                 }).catch((e) => {
                     this.$toast(e.message);
-                    // Dialog.alert({
-                    //     title: '警告',
-                    //     message: e.message
-                    // }
-                    // )
                 })
             },
             onLoad() {
                 let queryParams = {
                     pageNum: this.pageIndex,
                     pageSize: 15,
-                    status: 4, // 订单状态（1匹配中 2待付款 3已付款 4已完成）
+                    status: 2, // 订单状态（1匹配中 2待付款 3已付款 4已完成）
                 }
                 listShoudanOrder(queryParams).then(data => {
                     if (data && data.code == 200) {
@@ -132,24 +129,20 @@
                     }
                 }).catch((e) => {
                     this.$toast(e.message);
-                    // Dialog.alert({
-                    //     title: '警告',
-                    //     message: e.message
-                    // }
-                    // )
                 })
             },
             setRstatus() {
                 setReadStatus().then(res => {
                     console.log(res);
                 })
-            }
+            },
         },
         created() {
             this.setRstatus();
         },
         components:{
-            Card
+            Card,
+            Sheng
         }
     };
 </script>

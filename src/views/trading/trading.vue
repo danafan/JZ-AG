@@ -6,13 +6,18 @@
 				<div class="line" v-show="active_tab == 0"></div>
 			</div>
 			<div class="tab_item" @click="changeTab(1)">
-				<div class="tab_text" :class="{active_tab_text:active_tab == 1}">收单广场</div>
+				<div class="tab_text" :class="{active_tab_text:active_tab == 1}">收单大厅</div>
 				<div class="line" v-show="active_tab == 1"></div>
+			</div>
+			<div class="tab_item" @click="changeTab(2)">
+				<div class="tab_text" :class="{active_tab_text:active_tab == 2}">订单追踪</div>
+				<div class="line" v-show="active_tab == 2"></div>
 			</div>
 		</div>
 		<div class="content">
 			<RobOrder v-if="active_tab == 0"/>
 			<Square v-if="active_tab == 1"/>
+			<Ongoing v-if="active_tab == 2"/>
 		</div>
 	</div>
 </template>
@@ -81,6 +86,7 @@
 	import {Dialog} from 'vant';
 	import RobOrder from './robOrder.vue';
 	import Square from './square.vue';
+	import Ongoing from './ongoing.vue'
 	export default {
 		name:'trading',
 		data(){
@@ -110,6 +116,7 @@
 		components:{
 			RobOrder,
 			Square,
+			Ongoing
 		}
 	}
 </script>

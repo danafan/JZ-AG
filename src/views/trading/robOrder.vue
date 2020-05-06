@@ -211,7 +211,7 @@
                         Toast(response.msg);
                     }
                 }).catch((e) => {
-                    Toast(e.message);
+                    Toast(e.msg);
                 })
             },
             cancelAccept() {

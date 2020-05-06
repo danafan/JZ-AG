@@ -2,45 +2,44 @@
     <div class="login_box">
         <img class="logo" src="../../assets/logo.png">
         <div class="title">AG官方唯一合作伙伴</div>
-        <div class="input_box">
-            <div class="label">账号：</div>
-            <input type="text" placeholder="请输入账号" v-model="username">
-        </div>
-        <div class="input_box">
-            <div class="label">密码：</div>
-            <input class="input_box" type="password" placeholder="请输入密码" v-model="password">
-        </div>
-        <div class="code_box">
-            <div class="label">验证码：</div>
-            <div class="right">
-                <input class="code_input" type="text" placeholder="请输入验证码" v-model="code">
-                <img class="code_icon" :src="codeUrl" @click="getCaptcha">
-            </div>
-            
-        </div>
-        <Button text="登录" :active_submit="active_submit" @callback="login"/>
-        <div class="bottom_buts">
-            <div class="but">
-                <img src="../../assets/service_icon.png">
-                <div class="but_txt">在线客服</div>
-            </div>
-            <div class="but" @click="show_sheet = true">
-                <img src="../../assets/change_icon.png">
-                <div class="but_txt">切换线路</div>
-            </div>
-        </div>
-        <van-action-sheet v-model="show_sheet" title="选择线路" :round="false" @cancel="show_sheet = false">
-            <div class="sheet_item" :class="{sel_item:active_item == index}" v-for="(item,index) in actions" @click="onSelect(index)">
-                <div class="name">{{item.name}}</div>
-                <div class="toast">{{randomNum(300,500)}}ms</div>
-            </div>
-        </van-action-sheet>
+     <div class="input_box">
+        <div class="label">账号：</div>
+        <input type="text" placeholder="请输入账号" v-model="username">
     </div>
+    <div class="input_box">
+        <div class="label">密码：</div>
+        <input class="input_box" type="password" placeholder="请输入密码" v-model="password">
+    </div>
+    <div class="code_box">
+        <div class="label">验证码：</div>
+        <div class="right">
+            <input class="code_input" type="text" placeholder="请输入验证码" v-model="code">
+            <img class="code_icon" :src="codeUrl" @click="getCaptcha">
+        </div>
+    </div>
+    <Button text="登录" :active_submit="active_submit" @callback="login"/>
+    <div class="bottom_buts">
+        <div class="but" @click="local()">
+            <img src="../../assets/service_icon.png">
+            <div class="but_txt">在线客服</div>
+        </div>
+        <div class="but" @click="show_sheet = true">
+            <img src="../../assets/change_icon.png">
+            <div class="but_txt">切换线路</div>
+        </div>
+    </div>
+    <van-action-sheet v-model="show_sheet" title="选择线路" :round="false" @cancel="show_sheet = false">
+        <div class="sheet_item" :class="{sel_item:active_item == index}" v-for="(item,index) in actions" @click="onSelect(index)">
+            <div class="name">{{item.name}}</div>
+            <div class="toast">{{randomNum(300,500)}}ms</div>
+        </div>
+    </van-action-sheet>
+</div>
 </template>
 <style lang="less" scoped>
 .login_box{
     background: #fff;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -49,6 +48,7 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
     .logo{
         width: 1.86rem;
         height: 1.1rem;
@@ -59,6 +59,17 @@
         font-size: .32rem;
         color: #242629;
     }
+    .label_text{
+        border: 1px solid red;
+        height: 1.04rem;
+        align-items: center;
+        font-size: .32rem;
+        color: #333;
+        .van-cell__title,.van-field__label{
+            color: red!important;
+        }
+    }
+
     .input_box{
         width: 6rem;
         height: .96rem;
@@ -96,6 +107,7 @@
      align-items: center;
      .code_input{
         width: 1rem;
+        height: .8rem;
         border:none;
         outline: none;
         flex:1;
@@ -214,6 +226,9 @@ input:-ms-input-placeholder {
             },
         },
         methods: {
+            local(){
+                window.location.href = "https://tb.53kf.com/code/client/9afd0197934d34ad72809a2e538c54b65/1";
+            },
             randomNum(minNum,maxNum){ 
                 switch(arguments.length){ 
                     case 1: 
